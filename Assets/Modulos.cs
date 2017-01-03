@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class Modulos : MonoBehaviour {
 
-    public int quantidade = 2;
+    public int quantidade { get {
+       return int.Parse(txtQuantidade.text);
+    }}
+
+    public InputField txtQuantidade;
     public int laguraInternaModulo;
     public bool comParedesInternas;
 
