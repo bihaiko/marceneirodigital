@@ -12,7 +12,7 @@ public class Modulo : MonoBehaviour {
     public int indice = 0;
 
     public void Update(){
-        gameObject.name = "Modulo" + indice;
+        gameObject.name = "Modulo" + (indice+1);
         paredes.name = gameObject.name;
 
         if (movel == null) movel = FindObjectOfType<Movel>();

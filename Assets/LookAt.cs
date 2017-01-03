@@ -1,13 +1,43 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class LookAt : MonoBehaviour {
 
     public Transform target;
 
-	public void Update () {
-        if (target == null) return;
+    public float deltaX;
+    public float deltaY;
+    public float smooth = 8;
+    public float speed = .5f;
 
-        transform.LookAt(target);
-	}
+    private Geral geral;
+    private Modulos modulos;
+    private GUIController ctrl;
+
+    private float l;
+    private float a;
+
+    public void Update(){
+
+        if (target == null) return;
+        if (geral == null) geral = FindObjectOfType<Geral>();
+        if (modulos == null) modulos = FindObjectOfType<Modulos>();
+        if (ctrl == null) ctrl = FindObjectOfType<GUIController>();
+
+        int i = ctrl.index-1;
+        target = (i == -1) ? geral.transform : modulos.transform.GetChild(i);
+
+        var pos = target.position - transform.position;
+        var newRot = Quaternion.LookRotation(pos);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRot, speed);
+
+        a = target.lossyScale.y;
+        l = target.lossyScale.x;
+
+        var max = (a > l) ? Mathf.Pow(a, .5f) * (1 + deltaY) : Mathf.Pow(l, .5f) * (1 + deltaX);
+        max = (max < 40) ? 40 : max;
+
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max, smooth*Time.deltaTime);
+    }
 }
