@@ -4,12 +4,12 @@
 public class Modulo : MonoBehaviour {
 
     public GameObject paredes;
+    public int indice = 0;
+    public int separacoes = 10;
 
     private Movel movel;
     private Modulos modulos;
     private Interno interno;
-
-    public int indice = 0;
 
     public void Update(){
         gameObject.name = "Modulo" + (indice+1);
