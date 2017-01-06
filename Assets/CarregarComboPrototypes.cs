@@ -19,4 +19,5 @@ public class CarregarComboPrototypes : MonoBehaviour {
             list.Add(cmodulo.transform.GetChild(i).name);
 
         dropdown.AddOptions(list);
-    }}
+    }
+}
