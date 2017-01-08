@@ -14,7 +14,7 @@ public class GUIController : MonoBehaviour {
 
     public void Update () {
         if (movel == null) movel = FindObjectOfType<Movel>();
-        if (modulos == null) modulos = movel.GetComponentInChildren<Modulos>();
+		if (modulos == null) modulos = FindObjectOfType<Modulos>();
 
         maxIndex = modulos.quantidade;
 

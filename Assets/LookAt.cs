@@ -25,8 +25,9 @@ public class LookAt : MonoBehaviour {
         if (modulos == null) modulos = FindObjectOfType<Modulos>();
         if (ctrl == null) ctrl = FindObjectOfType<GUIController>();
 
+		if (modulos == null) return;
         int i = ctrl.index-1;
-        target = (i == -1) 
+		target = (i == -1) 
                     ? geral.transform 
                     : modulos.transform.GetChild(i);
         float x = (i == -1) ? deltaX : deltaX/zoom;
